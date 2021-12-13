@@ -9,3 +9,4 @@ GtkWidget* create_Modifer_utilisateur (void);
 GtkWidget* create_Rechercher_utilisateur (void);
 GtkWidget* create_Supprimer_utilisateur (void);
 GtkWidget* create_confirmation (void);
+GtkWidget* create_nbr_niveau (void);

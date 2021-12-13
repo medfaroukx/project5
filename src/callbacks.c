@@ -2,12 +2,17 @@
 #  include <config.h>
 #endif
 
+#define _GNU_SOURCE
+ 
 #include <gtk/gtk.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "callbacks.h"
 #include "interface.h"
 #include "utilisateur.h"
 #include "support.h"
+
 
 
 
@@ -127,7 +132,7 @@ Ajouter_utilisateur = lookup_widget(objet_graphique,"Ajouter_utilisateur");
 if(x==1)
 strcpy(U.Sexe,"Male");
 else
-if(x=2)
+if(x==2)
 strcpy(U.Sexe,"Femelle");
 
 if(t[0]==1) 
@@ -249,10 +254,53 @@ gtk_widget_show (Modifer_utilisateur);
 
 
 void
-on_button_valider2FK_clicked           (GtkWidget       *button,
+on_button_valider2FK_clicked           (GtkWidget       *objet_graphique,
                                         gpointer         user_data)
 {
+GtkWidget *Id, *Age,*Cin, *Niveau, *Nom, *Prenom, * Sexe, *Role ,*Modifer_utilisateur ;
 
+
+char niv[50];
+
+User U;
+
+Modifer_utilisateur = lookup_widget(objet_graphique,"Modifer_utilisateur");
+if(x==1)
+strcpy(U.Sexe,"Male");
+else
+if(x==2)
+strcpy(U.Sexe,"Femelle");
+
+if(t[0]==1) 
+strcpy(U.Role,"Etudiant");
+if(t[1]==1) 
+strcpy(U.Role,"Enseignant");
+if(t[2]==1) 
+strcpy(U.Role,"Agent");
+
+
+
+Id=lookup_widget(objet_graphique,"entry5");
+Nom=lookup_widget(objet_graphique,"entry6");
+Prenom=lookup_widget(objet_graphique,"entry7");
+Cin=lookup_widget(objet_graphique,"entry8");
+Niveau=lookup_widget(objet_graphique,"combobox2");
+Age=lookup_widget(objet_graphique,"spinbutton2");
+
+strcpy(U.Id,gtk_entry_get_text(GTK_ENTRY(Id)));
+printf("%s \n",Id);
+strcpy(U.Nom,gtk_entry_get_text(GTK_ENTRY(Nom)));
+strcpy(U.Prenom,gtk_entry_get_text(GTK_ENTRY(Prenom)));
+strcpy(U.Cin,gtk_entry_get_text(GTK_ENTRY(Cin)));
+strcpy(niv, gtk_combo_box_get_active_text(GTK_COMBO_BOX(Niveau)));
+U.Niveau=atoi(niv);
+U.Age=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (Age)) ;
+
+
+
+ModifierUtilisateur(U);
+
+	
 }
 
 
@@ -270,20 +318,84 @@ void
 on_button_okFK_clicked                 (GtkWidget       *button,
                                         gpointer         user_data)
 {
-GtkWidget* output;
-char texte1[200]="";
+GtkWidget* output, *IdR , *Id, *Age,*Cin, *Niveau, *Nom, *Prenom, * Sexe, *Role;
+User U;
+char idr[30];
+
+char message[500];
+char texte1[100];
+char texte2[100];
+
+
+IdR=lookup_widget(button,"entry9");
+strcpy(idr,gtk_entry_get_text(GTK_ENTRY(IdR)));
+Recherche(idr);
+
+sprintf(texte1, "%d", U.Age);
+sprintf(texte2, "%d", U.Niveau); 
+
+strcat(message,"l'id:");
+strcat(message," ");
+strcat(message,U.Id);
+strcat(message," age");
+strcat(message,":");
+strcat(message,texte1 );
+strcat(message,"ans");
+strcat (message," // ");
+strcat(message,"cin:");
+strcat(message,"  ");
+strcat(message,U.Cin);
+strcat (message," // ");
+strcat(message,"niveau:");
+strcat(message," ");
+strcat(message,texte2);
+strcat (message," // ");
+strcat(message,"Nom:");
+strcat(message," ");
+strcat(message,U.Nom);
+strcat(message,"prenom:");
+strcat(message," ");
+strcat(message,U.Prenom);
+strcat(message," Sexe");
+strcat(message,":");
+strcat(message,U.Sexe );
+strcat (message," // ");
+strcat(message,"Role:");
+strcat(message,"  ");
+strcat(message,U.Role);
 
 
 
 output = lookup_widget(button,"label31");
-gtk_label_set_text(GTK_LABEL(output),texte1);
+gtk_label_set_text(GTK_LABEL(output),message);   
+
 }
 
 
 void
-on_button_valider3FK_clicked           (GtkWidget       *button,
+on_button_valider3FK_clicked           (GtkWidget      *objet_graphique,
                                         gpointer         user_data)
-{
+
+{ 
+char code[50];
+
+FILE *f=NULL;
+GtkWidget *Code ;
+
+GtkWidget *Supprimer_utilisateur;
+
+
+Supprimer_utilisateur=lookup_widget(objet_graphique,"Supprimer_utilisateur");
+
+Code = lookup_widget(objet_graphique, "entry10") ;
+strcpy(code,gtk_entry_get_text(GTK_ENTRY(Code)));
+printf("%s \n",code);     
+
+SupprimerUtilisateur(code);
+
+
+Supprimer_utilisateur=create_confirmation();
+gtk_widget_show (Supprimer_utilisateur);
 
 }
 
@@ -298,7 +410,7 @@ gtk_widget_show (Supprimer_utilisateur);
 }
 
 
-void
+/*void
 on_treeview1_row_activated             (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
@@ -336,14 +448,118 @@ on_treeview1_row_activated             (GtkTreeView     *treeview,
 	}
 }
 
-
+*/
 void
 on_button_afficher_utilisateurFK_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 GtkWidget *Bienvenue;
-Bienvenue=create_Afficher_utilisatuer();
+GtkWidget *treeview1;
+User U;
+GtkWidget *Afficher_utilisatuer;
+
+Bienvenue=lookup_widget(button,"Bienvenue");
+gtk_widget_destroy (Bienvenue);
+
+Afficher_utilisatuer=lookup_widget(button,"Afficher_utilisatuer");
+Afficher_utilisatuer=create_Afficher_utilisatuer();
+gtk_widget_show (Afficher_utilisatuer);
+
+treeview1=lookup_widget(Afficher_utilisatuer,"treeview1");
+AfficherTt(treeview1);
+}
+
+
+void
+on_button_calculer_niveauFK_clicked    (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+/*GtkWidget *output1, *output2, *output3, *output4,*output5;
+GtkWidget *Bienvenue;
+char message1[500];
+char message2[500];
+char message3[500];
+char message4[500];
+char message5[500];
+
+
+char num1[10];
+char num2[10];
+char num3[10];
+char num4[10];
+char num5[10];
+
+FILE *f;
+f=fopen("etudiant.txt","w+");
+output1 = lookup_widget(button,"label1annerFK");
+output2 = lookup_widget(button,"label2annerFK");
+output3 = lookup_widget(button,"label3annerFK");
+output4 = lookup_widget(button,"label4annerFK");
+output5 = lookup_widget(button,"label5annerFK");
+
+strcpy(message1,"");
+strcpy(message2,"");
+strcpy(message3,"");
+strcpy(message4,"");
+strcpy(message5,"");
+
+nbEtudiant();
+
+f=fopen("etudiant.txt","r+");
+fscanf(f,"%s %s %s %s %s",num1,num2,num3,num4,num5);
+fclose(f);
+
+
+
+strcat(message1,"1ere_annee:");
+strcat(message1," ");
+strcat(message1,num1);
+
+strcat(message2,"2eme_annee:");
+strcat(message2," ");
+strcat(message2,num2);
+
+strcat(message3,"3eme_annee:");
+strcat(message3,"  ");
+strcat(message3,num3);
+
+strcat(message4,"4eme_annee:");
+strcat(message4," ");
+strcat(message4,num4);
+
+strcat(message5,"5eme_annee:");
+strcat(message5," ");
+strcat(message5,num5);
+
+
+gtk_label_set_text(GTK_LABEL(output1),message1);
+
+
+gtk_label_set_text(GTK_LABEL(output2),message2);
+
+
+gtk_label_set_text(GTK_LABEL(output3),message3);
+
+
+gtk_label_set_text(GTK_LABEL(output4),message4);
+
+
+gtk_label_set_text(GTK_LABEL(output5),message5);
+
+
+
+Bienvenue=create_nbr_niveau();
 gtk_widget_show (Bienvenue);
+*/
+}
+
+void
+on_button_retourner10FK_clicked        (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *Bienv;
+Bienv=create_Bienvenue();
+gtk_widget_show (Bienv);
 }
 

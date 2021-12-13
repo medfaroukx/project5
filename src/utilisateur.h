@@ -11,10 +11,11 @@ typedef struct
     char Sexe[20];
 }User;
 
-int rech(int Idrech);
+int rech(char Idrech);
 void AjouterUtilisateur(User U);
-void Recherche();
-void SupprimerUtilisateur(User U);
-void ModifierUtilisateur();
+void Recherche(char IdR[]);
+void SupprimerUtilisateur(char code [50]);
+void ModifierUtilisateur(User U);
 void AfficherTt(GtkWidget *liste);
+//void nbEtudiant();
 

@@ -78,7 +78,7 @@ on_button_retourner3FK_clicked         (GtkWidget       *button,
                                         gpointer         user_data);
 
 void
-on_button_valider2FK_clicked           (GtkWidget       *button,
+on_button_valider2FK_clicked           (GtkWidget       *objet_graphique,
                                         gpointer         user_data);
 
 void
@@ -90,20 +90,28 @@ on_button_okFK_clicked                 (GtkWidget       *button,
                                         gpointer         user_data);
 
 void
-on_button_valider3FK_clicked           (GtkWidget       *button,
+on_button_valider3FK_clicked           (GtkWidget       *objet_graphique,
                                         gpointer         user_data);
 
 void
 on_button_retourner5FK_clicked         (GtkWidget       *button,
                                         gpointer         user_data);
 
-void
+/*void
 on_treeview1_row_activated             (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data);
-
+*/
 void
 on_button_afficher_utilisateurFK_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
+                                        gpointer         user_data);
+
+void
+on_button_calculer_niveauFK_clicked    (GtkWidget       *button,
+                                        gpointer         user_data);
+
+void
+on_button_retourner10FK_clicked        (GtkWidget       *button,
                                         gpointer         user_data);

@@ -32,27 +32,28 @@ create_Bienvenue (void)
   GtkWidget *Bienvenue;
   GtkWidget *fixed1;
   GtkWidget *label1;
-  GtkWidget *button_ajouter_utilisateurFK;
-  GtkWidget *alignment1;
-  GtkWidget *hbox1;
-  GtkWidget *image1;
-  GtkWidget *label2;
-  GtkWidget *button_rechercher_utilisateurFK;
-  GtkWidget *alignment2;
-  GtkWidget *hbox2;
-  GtkWidget *image2;
-  GtkWidget *label3;
-  GtkWidget *button_supprimer_utilisateurFK;
-  GtkWidget *alignment3;
-  GtkWidget *hbox3;
-  GtkWidget *image3;
-  GtkWidget *label4;
+  GtkWidget *button_afficher_utilisateurFK;
   GtkWidget *button_modifier_utilisateurFK;
   GtkWidget *alignment4;
   GtkWidget *hbox4;
   GtkWidget *image4;
   GtkWidget *label5;
-  GtkWidget *button_afficher_utilisateurFK;
+  GtkWidget *button_supprimer_utilisateurFK;
+  GtkWidget *alignment3;
+  GtkWidget *hbox3;
+  GtkWidget *image3;
+  GtkWidget *label4;
+  GtkWidget *button_rechercher_utilisateurFK;
+  GtkWidget *alignment2;
+  GtkWidget *hbox2;
+  GtkWidget *image2;
+  GtkWidget *label3;
+  GtkWidget *button_ajouter_utilisateurFK;
+  GtkWidget *alignment1;
+  GtkWidget *hbox1;
+  GtkWidget *image1;
+  GtkWidget *label2;
+  GtkWidget *button_calculer_niveauFK;
 
   Bienvenue = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (Bienvenue), _("Bienvenue"));
@@ -66,73 +67,15 @@ create_Bienvenue (void)
   gtk_fixed_put (GTK_FIXED (fixed1), label1, 300, 64);
   gtk_widget_set_size_request (label1, 360, 48);
 
-  button_ajouter_utilisateurFK = gtk_button_new ();
-  gtk_widget_show (button_ajouter_utilisateurFK);
-  gtk_fixed_put (GTK_FIXED (fixed1), button_ajouter_utilisateurFK, 300, 200);
-  gtk_widget_set_size_request (button_ajouter_utilisateurFK, 400, 40);
-
-  alignment1 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment1);
-  gtk_container_add (GTK_CONTAINER (button_ajouter_utilisateurFK), alignment1);
-
-  hbox1 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox1);
-  gtk_container_add (GTK_CONTAINER (alignment1), hbox1);
-
-  image1 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image1);
-  gtk_box_pack_start (GTK_BOX (hbox1), image1, FALSE, FALSE, 0);
-
-  label2 = gtk_label_new_with_mnemonic (_("Ajouter un Utilisateur"));
-  gtk_widget_show (label2);
-  gtk_box_pack_start (GTK_BOX (hbox1), label2, FALSE, FALSE, 0);
-
-  button_rechercher_utilisateurFK = gtk_button_new ();
-  gtk_widget_show (button_rechercher_utilisateurFK);
-  gtk_fixed_put (GTK_FIXED (fixed1), button_rechercher_utilisateurFK, 300, 300);
-  gtk_widget_set_size_request (button_rechercher_utilisateurFK, 400, 40);
-
-  alignment2 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment2);
-  gtk_container_add (GTK_CONTAINER (button_rechercher_utilisateurFK), alignment2);
-
-  hbox2 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox2);
-  gtk_container_add (GTK_CONTAINER (alignment2), hbox2);
-
-  image2 = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image2);
-  gtk_box_pack_start (GTK_BOX (hbox2), image2, FALSE, FALSE, 0);
-
-  label3 = gtk_label_new_with_mnemonic (_("Rechercher un Utilisateur"));
-  gtk_widget_show (label3);
-  gtk_box_pack_start (GTK_BOX (hbox2), label3, FALSE, FALSE, 0);
-
-  button_supprimer_utilisateurFK = gtk_button_new ();
-  gtk_widget_show (button_supprimer_utilisateurFK);
-  gtk_fixed_put (GTK_FIXED (fixed1), button_supprimer_utilisateurFK, 300, 400);
-  gtk_widget_set_size_request (button_supprimer_utilisateurFK, 400, 40);
-
-  alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment3);
-  gtk_container_add (GTK_CONTAINER (button_supprimer_utilisateurFK), alignment3);
-
-  hbox3 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox3);
-  gtk_container_add (GTK_CONTAINER (alignment3), hbox3);
-
-  image3 = gtk_image_new_from_stock ("gtk-delete", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image3);
-  gtk_box_pack_start (GTK_BOX (hbox3), image3, FALSE, FALSE, 0);
-
-  label4 = gtk_label_new_with_mnemonic (_("Supprimer un Utilisateur"));
-  gtk_widget_show (label4);
-  gtk_box_pack_start (GTK_BOX (hbox3), label4, FALSE, FALSE, 0);
+  button_afficher_utilisateurFK = gtk_button_new_with_mnemonic (_("Afficher les Utilisateurs"));
+  gtk_widget_show (button_afficher_utilisateurFK);
+  gtk_fixed_put (GTK_FIXED (fixed1), button_afficher_utilisateurFK, 300, 600);
+  gtk_widget_set_size_request (button_afficher_utilisateurFK, 450, 40);
 
   button_modifier_utilisateurFK = gtk_button_new ();
   gtk_widget_show (button_modifier_utilisateurFK);
   gtk_fixed_put (GTK_FIXED (fixed1), button_modifier_utilisateurFK, 300, 500);
-  gtk_widget_set_size_request (button_modifier_utilisateurFK, 400, 40);
+  gtk_widget_set_size_request (button_modifier_utilisateurFK, 450, 40);
 
   alignment4 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment4);
@@ -150,52 +93,119 @@ create_Bienvenue (void)
   gtk_widget_show (label5);
   gtk_box_pack_start (GTK_BOX (hbox4), label5, FALSE, FALSE, 0);
 
-  button_afficher_utilisateurFK = gtk_button_new_with_mnemonic (_("Afficher un Utilisateur"));
-  gtk_widget_show (button_afficher_utilisateurFK);
-  gtk_fixed_put (GTK_FIXED (fixed1), button_afficher_utilisateurFK, 300, 600);
-  gtk_widget_set_size_request (button_afficher_utilisateurFK, 400, 40);
+  button_supprimer_utilisateurFK = gtk_button_new ();
+  gtk_widget_show (button_supprimer_utilisateurFK);
+  gtk_fixed_put (GTK_FIXED (fixed1), button_supprimer_utilisateurFK, 300, 400);
+  gtk_widget_set_size_request (button_supprimer_utilisateurFK, 450, 40);
 
-  g_signal_connect ((gpointer) button_ajouter_utilisateurFK, "clicked",
-                    G_CALLBACK (on_button_ajouter_utilisateurFK_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_rechercher_utilisateurFK, "clicked",
-                    G_CALLBACK (on_button_rechercher_utilisateur_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_supprimer_utilisateurFK, "clicked",
-                    G_CALLBACK (on_button_supprimer_utilisateur_clicked),
+  alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment3);
+  gtk_container_add (GTK_CONTAINER (button_supprimer_utilisateurFK), alignment3);
+
+  hbox3 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox3);
+  gtk_container_add (GTK_CONTAINER (alignment3), hbox3);
+
+  image3 = gtk_image_new_from_stock ("gtk-delete", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image3);
+  gtk_box_pack_start (GTK_BOX (hbox3), image3, FALSE, FALSE, 0);
+
+  label4 = gtk_label_new_with_mnemonic (_("Supprimer un Utilisateur"));
+  gtk_widget_show (label4);
+  gtk_box_pack_start (GTK_BOX (hbox3), label4, FALSE, FALSE, 0);
+
+  button_rechercher_utilisateurFK = gtk_button_new ();
+  gtk_widget_show (button_rechercher_utilisateurFK);
+  gtk_fixed_put (GTK_FIXED (fixed1), button_rechercher_utilisateurFK, 300, 300);
+  gtk_widget_set_size_request (button_rechercher_utilisateurFK, 450, 40);
+
+  alignment2 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment2);
+  gtk_container_add (GTK_CONTAINER (button_rechercher_utilisateurFK), alignment2);
+
+  hbox2 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox2);
+  gtk_container_add (GTK_CONTAINER (alignment2), hbox2);
+
+  image2 = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image2);
+  gtk_box_pack_start (GTK_BOX (hbox2), image2, FALSE, FALSE, 0);
+
+  label3 = gtk_label_new_with_mnemonic (_("Rechercher un Utilisateur"));
+  gtk_widget_show (label3);
+  gtk_box_pack_start (GTK_BOX (hbox2), label3, FALSE, FALSE, 0);
+
+  button_ajouter_utilisateurFK = gtk_button_new ();
+  gtk_widget_show (button_ajouter_utilisateurFK);
+  gtk_fixed_put (GTK_FIXED (fixed1), button_ajouter_utilisateurFK, 300, 200);
+  gtk_widget_set_size_request (button_ajouter_utilisateurFK, 450, 40);
+
+  alignment1 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment1);
+  gtk_container_add (GTK_CONTAINER (button_ajouter_utilisateurFK), alignment1);
+
+  hbox1 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox1);
+  gtk_container_add (GTK_CONTAINER (alignment1), hbox1);
+
+  image1 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image1);
+  gtk_box_pack_start (GTK_BOX (hbox1), image1, FALSE, FALSE, 0);
+
+  label2 = gtk_label_new_with_mnemonic (_("Ajouter un Utilisateur"));
+  gtk_widget_show (label2);
+  gtk_box_pack_start (GTK_BOX (hbox1), label2, FALSE, FALSE, 0);
+
+  button_calculer_niveauFK = gtk_button_new_with_mnemonic (_("Nombre d'etudiant par niveau"));
+  gtk_widget_show (button_calculer_niveauFK);
+  gtk_fixed_put (GTK_FIXED (fixed1), button_calculer_niveauFK, 300, 700);
+  gtk_widget_set_size_request (button_calculer_niveauFK, 450, 40);
+
+  g_signal_connect ((gpointer) button_afficher_utilisateurFK, "clicked",
+                    G_CALLBACK (on_button_afficher_utilisateurFK_clicked),
                     NULL);
   g_signal_connect ((gpointer) button_modifier_utilisateurFK, "clicked",
                     G_CALLBACK (on_button_modifier_utilisateurFK_clicked),
                     NULL);
-  g_signal_connect ((gpointer) button_afficher_utilisateurFK, "clicked",
-                    G_CALLBACK (on_button_afficher_utilisateurFK_clicked),
+  g_signal_connect ((gpointer) button_supprimer_utilisateurFK, "clicked",
+                    G_CALLBACK (on_button_supprimer_utilisateur_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_rechercher_utilisateurFK, "clicked",
+                    G_CALLBACK (on_button_rechercher_utilisateur_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_ajouter_utilisateurFK, "clicked",
+                    G_CALLBACK (on_button_ajouter_utilisateurFK_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_calculer_niveauFK, "clicked",
+                    G_CALLBACK (on_button_calculer_niveauFK_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (Bienvenue, Bienvenue, "Bienvenue");
   GLADE_HOOKUP_OBJECT (Bienvenue, fixed1, "fixed1");
   GLADE_HOOKUP_OBJECT (Bienvenue, label1, "label1");
-  GLADE_HOOKUP_OBJECT (Bienvenue, button_ajouter_utilisateurFK, "button_ajouter_utilisateurFK");
-  GLADE_HOOKUP_OBJECT (Bienvenue, alignment1, "alignment1");
-  GLADE_HOOKUP_OBJECT (Bienvenue, hbox1, "hbox1");
-  GLADE_HOOKUP_OBJECT (Bienvenue, image1, "image1");
-  GLADE_HOOKUP_OBJECT (Bienvenue, label2, "label2");
-  GLADE_HOOKUP_OBJECT (Bienvenue, button_rechercher_utilisateurFK, "button_rechercher_utilisateurFK");
-  GLADE_HOOKUP_OBJECT (Bienvenue, alignment2, "alignment2");
-  GLADE_HOOKUP_OBJECT (Bienvenue, hbox2, "hbox2");
-  GLADE_HOOKUP_OBJECT (Bienvenue, image2, "image2");
-  GLADE_HOOKUP_OBJECT (Bienvenue, label3, "label3");
-  GLADE_HOOKUP_OBJECT (Bienvenue, button_supprimer_utilisateurFK, "button_supprimer_utilisateurFK");
-  GLADE_HOOKUP_OBJECT (Bienvenue, alignment3, "alignment3");
-  GLADE_HOOKUP_OBJECT (Bienvenue, hbox3, "hbox3");
-  GLADE_HOOKUP_OBJECT (Bienvenue, image3, "image3");
-  GLADE_HOOKUP_OBJECT (Bienvenue, label4, "label4");
+  GLADE_HOOKUP_OBJECT (Bienvenue, button_afficher_utilisateurFK, "button_afficher_utilisateurFK");
   GLADE_HOOKUP_OBJECT (Bienvenue, button_modifier_utilisateurFK, "button_modifier_utilisateurFK");
   GLADE_HOOKUP_OBJECT (Bienvenue, alignment4, "alignment4");
   GLADE_HOOKUP_OBJECT (Bienvenue, hbox4, "hbox4");
   GLADE_HOOKUP_OBJECT (Bienvenue, image4, "image4");
   GLADE_HOOKUP_OBJECT (Bienvenue, label5, "label5");
-  GLADE_HOOKUP_OBJECT (Bienvenue, button_afficher_utilisateurFK, "button_afficher_utilisateurFK");
+  GLADE_HOOKUP_OBJECT (Bienvenue, button_supprimer_utilisateurFK, "button_supprimer_utilisateurFK");
+  GLADE_HOOKUP_OBJECT (Bienvenue, alignment3, "alignment3");
+  GLADE_HOOKUP_OBJECT (Bienvenue, hbox3, "hbox3");
+  GLADE_HOOKUP_OBJECT (Bienvenue, image3, "image3");
+  GLADE_HOOKUP_OBJECT (Bienvenue, label4, "label4");
+  GLADE_HOOKUP_OBJECT (Bienvenue, button_rechercher_utilisateurFK, "button_rechercher_utilisateurFK");
+  GLADE_HOOKUP_OBJECT (Bienvenue, alignment2, "alignment2");
+  GLADE_HOOKUP_OBJECT (Bienvenue, hbox2, "hbox2");
+  GLADE_HOOKUP_OBJECT (Bienvenue, image2, "image2");
+  GLADE_HOOKUP_OBJECT (Bienvenue, label3, "label3");
+  GLADE_HOOKUP_OBJECT (Bienvenue, button_ajouter_utilisateurFK, "button_ajouter_utilisateurFK");
+  GLADE_HOOKUP_OBJECT (Bienvenue, alignment1, "alignment1");
+  GLADE_HOOKUP_OBJECT (Bienvenue, hbox1, "hbox1");
+  GLADE_HOOKUP_OBJECT (Bienvenue, image1, "image1");
+  GLADE_HOOKUP_OBJECT (Bienvenue, label2, "label2");
+  GLADE_HOOKUP_OBJECT (Bienvenue, button_calculer_niveauFK, "button_calculer_niveauFK");
 
   return Bienvenue;
 }
@@ -226,7 +236,6 @@ create_Ajouter_utilisateur (void)
   GtkWidget *radiobutton1FK;
   GSList *radiobutton1FK_group = NULL;
   GtkWidget *radiobutton2FK;
-  GtkWidget *combobox1FK;
   GtkWidget *button_valider1FK;
   GtkWidget *alignment6;
   GtkWidget *hbox6;
@@ -237,6 +246,7 @@ create_Ajouter_utilisateur (void)
   GtkWidget *hbox5;
   GtkWidget *image5;
   GtkWidget *label15;
+  GtkWidget *combobox1FK;
 
   Ajouter_utilisateur = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (Ajouter_utilisateur), _("Ajouter un nouveau Utilisateur"));
@@ -349,16 +359,6 @@ create_Ajouter_utilisateur (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton2FK), radiobutton1FK_group);
   radiobutton1FK_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton2FK));
 
-  combobox1FK = gtk_combo_box_new_text ();
-  gtk_widget_show (combobox1FK);
-  gtk_fixed_put (GTK_FIXED (fixed2), combobox1FK, 350, 650);
-  gtk_widget_set_size_request (combobox1FK, 240, 40);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("1 \303\250re"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("2 \303\250me"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("3 \303\250me"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("4 \303\250me"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("5 \303\250me"));
-
   button_valider1FK = gtk_button_new ();
   gtk_widget_show (button_valider1FK);
   gtk_fixed_put (GTK_FIXED (fixed2), button_valider1FK, 600, 950);
@@ -400,6 +400,17 @@ create_Ajouter_utilisateur (void)
   label15 = gtk_label_new_with_mnemonic (_("Retourner"));
   gtk_widget_show (label15);
   gtk_box_pack_start (GTK_BOX (hbox5), label15, FALSE, FALSE, 0);
+
+  combobox1FK = gtk_combo_box_new_text ();
+  gtk_widget_show (combobox1FK);
+  gtk_fixed_put (GTK_FIXED (fixed2), combobox1FK, 350, 650);
+  gtk_widget_set_size_request (combobox1FK, 240, 40);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("1 \303\250re"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("2 \303\250me"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("3 \303\250me"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("4 \303\250me"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("5 \303\250me"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1FK), _("999"));
 
   g_signal_connect ((gpointer) checkbutton1FK, "toggled",
                     G_CALLBACK (on_checkbutton1FK_toggled),
@@ -445,7 +456,6 @@ create_Ajouter_utilisateur (void)
   GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, checkbutton3FK, "checkbutton3FK");
   GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, radiobutton1FK, "radiobutton1FK");
   GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, radiobutton2FK, "radiobutton2FK");
-  GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, combobox1FK, "combobox1FK");
   GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, button_valider1FK, "button_valider1FK");
   GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, alignment6, "alignment6");
   GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, hbox6, "hbox6");
@@ -456,6 +466,7 @@ create_Ajouter_utilisateur (void)
   GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, hbox5, "hbox5");
   GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, image5, "image5");
   GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, label15, "label15");
+  GLADE_HOOKUP_OBJECT (Ajouter_utilisateur, combobox1FK, "combobox1FK");
 
   return Ajouter_utilisateur;
 }
@@ -505,9 +516,6 @@ create_Afficher_utilisatuer (void)
   gtk_widget_show (label17);
   gtk_box_pack_start (GTK_BOX (hbox7), label17, FALSE, FALSE, 0);
 
-  g_signal_connect ((gpointer) treeview1, "row_activated",
-                    G_CALLBACK (on_treeview1_row_activated),
-                    NULL);
   g_signal_connect ((gpointer) button_retourner2FK, "clicked",
                     G_CALLBACK (on_button_retourner2FK_clicked),
                     NULL);
@@ -725,6 +733,7 @@ create_Modifer_utilisateur (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("3 \303\250me"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("4 \303\250me"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("5 \303\250me"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("999"));
 
   g_signal_connect ((gpointer) radiobutton3FK, "toggled",
                     G_CALLBACK (on_radiobutton3FK_toggled),
@@ -1025,5 +1034,123 @@ create_confirmation (void)
   GLADE_HOOKUP_OBJECT (confirmation, label36, "label36");
 
   return confirmation;
+}
+
+GtkWidget*
+create_nbr_niveau (void)
+{
+  GtkWidget *nbr_niveau;
+  GtkWidget *fixed8;
+  GtkWidget *hseparator1;
+  GtkWidget *hseparator2;
+  GtkWidget *vseparator1;
+  GtkWidget *label42;
+  GtkWidget *label5annerFK;
+  GtkWidget *label4annerFK;
+  GtkWidget *label3annerFK;
+  GtkWidget *label2annerFK;
+  GtkWidget *button_retourner10FK;
+  GtkWidget *alignment14;
+  GtkWidget *hbox14;
+  GtkWidget *image14;
+  GtkWidget *label43;
+  GtkWidget *label1annerFK;
+
+  nbr_niveau = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (nbr_niveau), _("etudiants par niveau"));
+
+  fixed8 = gtk_fixed_new ();
+  gtk_widget_show (fixed8);
+  gtk_container_add (GTK_CONTAINER (nbr_niveau), fixed8);
+
+  hseparator1 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator1);
+  gtk_fixed_put (GTK_FIXED (fixed8), hseparator1, 88, 152);
+  gtk_widget_set_size_request (hseparator1, 16, 16);
+
+  hseparator2 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator2);
+  gtk_fixed_put (GTK_FIXED (fixed8), hseparator2, 200, 192);
+  gtk_widget_set_size_request (hseparator2, 16, 16);
+
+  vseparator1 = gtk_vseparator_new ();
+  gtk_widget_show (vseparator1);
+  gtk_fixed_put (GTK_FIXED (fixed8), vseparator1, 256, 128);
+  gtk_widget_set_size_request (vseparator1, 16, 16);
+
+  label42 = gtk_label_new (_("Nombre d'etudiant par niveau"));
+  gtk_widget_show (label42);
+  gtk_fixed_put (GTK_FIXED (fixed8), label42, 232, 32);
+  gtk_widget_set_size_request (label42, 496, 64);
+
+  label5annerFK = gtk_label_new ("");
+  gtk_widget_show (label5annerFK);
+  gtk_fixed_put (GTK_FIXED (fixed8), label5annerFK, 64, 608);
+  gtk_widget_set_size_request (label5annerFK, 752, 72);
+
+  label4annerFK = gtk_label_new ("");
+  gtk_widget_show (label4annerFK);
+  gtk_fixed_put (GTK_FIXED (fixed8), label4annerFK, 96, 464);
+  gtk_widget_set_size_request (label4annerFK, 704, 120);
+
+  label3annerFK = gtk_label_new ("");
+  gtk_widget_show (label3annerFK);
+  gtk_fixed_put (GTK_FIXED (fixed8), label3annerFK, 72, 376);
+  gtk_widget_set_size_request (label3annerFK, 720, 88);
+
+  label2annerFK = gtk_label_new ("");
+  gtk_widget_show (label2annerFK);
+  gtk_fixed_put (GTK_FIXED (fixed8), label2annerFK, 80, 256);
+  gtk_widget_set_size_request (label2annerFK, 680, 88);
+
+  button_retourner10FK = gtk_button_new ();
+  gtk_widget_show (button_retourner10FK);
+  gtk_fixed_put (GTK_FIXED (fixed8), button_retourner10FK, 112, 704);
+  gtk_widget_set_size_request (button_retourner10FK, 192, 48);
+
+  alignment14 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment14);
+  gtk_container_add (GTK_CONTAINER (button_retourner10FK), alignment14);
+
+  hbox14 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox14);
+  gtk_container_add (GTK_CONTAINER (alignment14), hbox14);
+
+  image14 = gtk_image_new_from_stock ("gtk-undo", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image14);
+  gtk_box_pack_start (GTK_BOX (hbox14), image14, FALSE, FALSE, 0);
+
+  label43 = gtk_label_new_with_mnemonic (_("Retourner"));
+  gtk_widget_show (label43);
+  gtk_box_pack_start (GTK_BOX (hbox14), label43, FALSE, FALSE, 0);
+
+  label1annerFK = gtk_label_new ("");
+  gtk_widget_show (label1annerFK);
+  gtk_fixed_put (GTK_FIXED (fixed8), label1annerFK, 88, 152);
+  gtk_widget_set_size_request (label1annerFK, 712, 80);
+
+  g_signal_connect ((gpointer) button_retourner10FK, "clicked",
+                    G_CALLBACK (on_button_retourner10FK_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (nbr_niveau, nbr_niveau, "nbr_niveau");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, fixed8, "fixed8");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, hseparator1, "hseparator1");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, hseparator2, "hseparator2");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, vseparator1, "vseparator1");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, label42, "label42");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, label5annerFK, "label5annerFK");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, label4annerFK, "label4annerFK");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, label3annerFK, "label3annerFK");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, label2annerFK, "label2annerFK");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, button_retourner10FK, "button_retourner10FK");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, alignment14, "alignment14");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, hbox14, "hbox14");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, image14, "image14");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, label43, "label43");
+  GLADE_HOOKUP_OBJECT (nbr_niveau, label1annerFK, "label1annerFK");
+
+  return nbr_niveau;
 }
 

@@ -27,7 +27,8 @@ enum
 
 
 
-int rech(int Idrech)
+
+int rech(char Idrech)
 
 {
 User U;
@@ -37,7 +38,7 @@ User U;
     {
        fscanf(F,"%s %d %s %d %s %s %s %s \n",U.Id,&U.Age,U.Cin,&U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);
        fflush(stdin);
-       if (U.Id==Idrech)
+       if (strcmp(Idrech,U.Id)==0)
        {
            fclose(F);
            return 1;
@@ -64,141 +65,122 @@ if (F!=NULL)
 }
 
 
-void Recherche()
+void Recherche(char IdR[])
 {
 User U;
-    char IdR;
-    printf("Entrer le Id d'Utilisateur à rechrcher\n");
-    scanf("%d",&IdR);
+char texte1[200];
+   
+	fscanf("%s",IdR);
     FILE *F;
     F=fopen("Utilisateur.txt","r");
     do
     {
-        fscanf(F,"%s ;%d ;%s ;%d ;%s ;%s ;%s;%s \n",U.Id,&U.Age,U.Cin,&U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);
-        if (IdR == U.Id)
+        fscanf(F,"%s %d %s %d %s %s %s %s  \n",U.Id,&U.Age,U.Cin,&U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);
+        if (strcmp(U.Id,IdR)==0)
         {
-            printf("------ Information sur l'Utilisateur :------\n \n");
-            printf("Id\t: %s \n",U.Id);
-            printf("Age\t: %d \n",U.Age);
-            printf("Cin\t: %s \n",U.Cin);
-            printf("Niveau\t: %d \n",U.Niveau);
-            printf("Nom :\t%s\n",U.Nom);
-            printf("Prenom :\t%s\n",U.Prenom);
-            printf("Role :\t%s\n",U.Role);
-	    printf("Sexe :\t%s\n",U.Sexe);
-
+		return;
         }
     } while (!feof(F));
     fclose(F);
-    
+ 
 }
 
 
 
-void SupprimerUtilisateur(User U)
+void SupprimerUtilisateur(char code[50])
 {
+    FILE *f=NULL;
+    FILE *g=NULL;
+    User U;
+    f=fopen("Utilisateur.txt","r");
+    g=fopen("Utilisateur2.txt","a");
+    if(f==NULL || g==NULL)
+        return;
+    else{
+        while(fscanf(f,"%s %d %s %d %s %s %s %s \n",U.Id,&U.Age,U.Cin,&U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe)!=EOF)
+    {
+        if (strcmp(code,U.Id)!=0 )
+            {fprintf(g,"%s %d %s %d %s %s %s %s \n",U.Id,U.Age,U.Cin,U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);}
+    }
+    fclose(f);
+    fclose(g);
+    remove("Utilisateur.txt");
+    rename("Utilisateur2.txt","Utilisateur.txt");
+    }
 
-    char rep;
-    char IdRech;
-    printf("Enter le Id d'Utilisateur a supprimer:");
-    scanf("%s",IdRech);
-    fflush(stdin);
-    if (rech(IdRech)==1)
-    {
-        printf("\n voulez vous le supprimer o/n ?");
-        scanf("%c",&rep);
-        fflush(stdin);
-        if (rep=='o'|| rep =='O')
-        {
-            FILE *Fich,*F;
-            F=fopen("Utilisateur.txt","r");
-            Fich=fopen("TempUtilisateur.txt","a");
-            do
-            {
-                fscanf(F,"%s ;%d ;%s ;%d ;%s ;%s ;%s;%s \n",U.Id,&U.Age,U.Cin,&U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);
-                if ( strcmp(IdRech,U.Id)!=0)
-                {
-                   fprintf(F,"%s ;%d ;%s ;%d ;%s ;%s ;%s;%s \n",U.Id,U.Age,U.Cin,U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);
-                }
-                
-            } while (!feof(F));
-            
-            fclose(Fich);
-            fclose(F);
-            remove("Utilisateur.txt");
-            rename("TempUtilisateur.txt","Utilisateur.txt");
-            printf("suppression avec succees");
-        }
-    }
-    else
-    {
-        printf("\n Ce Id d'Utilisateur n'exixte pas");
-    }
+ 
 }
 
-
-
-
-void ModifierUtilisateur()
+/*void nbEtudiant()
 {
-User U;
+int n1=0;
+int n2=0;
+int n3=0;
+int n4=0;
+int n5=0;
+ 	FILE *f=NULL;
+	FILE *g=NULL;
+	User U;
+
+	f=fopen("Utilisateur.txt","r");
+	if(f==NULL)
+        	return;
+	else{
+        	while(fscanf(f,"%s %d %s %d %s %s %s %s \n",U.Id,&U.Age,U.Cin,&U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe)!=EOF)
+    {
+        if ((U.Niveau)==1 )
+	{
+           n1++;
+	}
+	else if ((U.Niveau)==2 )
+	{
+           n2++;
+	}
+	else if ((U.Niveau)==3 )
+	{
+           n3++;
+	}
+	else if ((U.Niveau)==4 )
+	{
+           n4++;
+	}
+	else if ((U.Niveau)==5 )
+	{
+           n5++;
+	}
+
+    fclose(f);
+    }
+g=fopen("etudiant.txt","w+");
+fprintf(g,"%d %d %d %d %d",n1,n2,n3,n4,n5); 
+fclose(g);
+}*/
+
+void ModifierUtilisateur(User U)
+{
+
     FILE *Fich,*F;
     char id;
 	int i;
-    char rep='n';
-    printf("\n Entrer le Id de l'Utilisateur a modifier :");
-    scanf("%s",id);
-    fflush(stdin);
+    
     if(rech(id)==1)
     {
-        printf("\n voulez vous vraiment modifier o/n ?");
-        scanf("%c",&rep);
-        fflush(stdin);
-        printf("%c",rep);
-
-        if (rep=='o'|| rep =='O')
-        {
+     
             F=fopen("Utilisateur.txt","r");
             Fich=fopen("TempUtilisateur.txt","a");
             do
             {
-                fscanf(F,"%s ;%d ;%s ;%d ;%s ;%s ;%s;%s \n",U.Id,&U.Age,U.Cin,&U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);
+                fscanf(F,"%s %d %s %d %s %s %s %s \n",U.Id,&U.Age,U.Cin,&U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);
                 if (strcmp(U.Id,id)==0)
-                {
-                  
-                   printf("\n Entrer le nouveau Nom:");
-                   gets(U.Nom);
-                   printf("\n Entrer le nouveau Age:");
-                   gets(U.Age);
-                   printf("\n Entrer le nouveau numero Cin:");
-                   gets(U.Cin);
-                   printf("\n Entrer le nouveau Niveau:");
-                   gets(U.Niveau);
-                   printf("\n Entrer le nouveau Prenom:");
-                   gets(U.Prenom);
-                   printf("\n Entrer la nouvelle Role:");
-                   gets(U.Role);
-		   printf("\n Entrer le nouveau Sexe:");
-                   gets(U.Role);
-                }
-                fprintf(F,"%s ;%d ;%s ;%d ;%s ;%s ;%s;%s \n",U.Id,U.Age,U.Cin,U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);
+               fprintf(F,"%s %d %s %d %s %s %s %s \n",U.Id,U.Age,U.Cin,U.Niveau,U.Nom,U.Prenom,U.Role,U.Sexe);
             } while (!feof(F));
             fclose(Fich);
             fclose(F);
             remove("Utilisateur.txt");
             rename("TempUtilisateur.txt","Utilisateur.txt");
-            printf("la modification à reussi");
+           
             
-        }
-        else
-        {
-            printf("\n la modification est annule\n");
-        }
-    }
-    else
-    {
-        printf("\n Ce Id d'Utilisateur n'existe pas \n");
-    }
+         }
 
 }
 
@@ -213,9 +195,9 @@ void AfficherTt(GtkWidget *liste)
 	GtkListStore *store;
 
 
-	char Id;
+	char Id[50];
     	int Age;
-    	char Cin;
+    	char Cin[50];
     	int Niveau;
     	char Nom[100];
     	char Prenom [100];
@@ -231,37 +213,37 @@ void AfficherTt(GtkWidget *liste)
 	if (store==NULL)
 	{
 	
-	renderer = gtk_cell_renderer_text_new ();
-	column = gtk_tree_view_column_new_with_attributes("Id" , renderer ,"text" ,EID, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
+	  renderer = gtk_cell_renderer_text_new ();
+	  column = gtk_tree_view_column_new_with_attributes("Id" , renderer ,"text" ,EID, NULL);
+	  gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
 
-	renderer = gtk_cell_renderer_text_new ();
-	column = gtk_tree_view_column_new_with_attributes("Age" , renderer ,"text" ,EAGE, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
+	  renderer = gtk_cell_renderer_text_new ();
+	  column = gtk_tree_view_column_new_with_attributes("Age" , renderer ,"text" ,EAGE, NULL);
+	  gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
 
-	renderer = gtk_cell_renderer_text_new ();
-	column = gtk_tree_view_column_new_with_attributes("Cin" , renderer ,"text" ,ECIN, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
+	  renderer = gtk_cell_renderer_text_new ();
+	  column = gtk_tree_view_column_new_with_attributes("Cin" , renderer ,"text" ,ECIN, NULL);
+	  gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
 
-	renderer = gtk_cell_renderer_text_new ();
-	column = gtk_tree_view_column_new_with_attributes("Niveau" , renderer ,"text" ,ENIVEAU, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
+	  renderer = gtk_cell_renderer_text_new ();
+	  column = gtk_tree_view_column_new_with_attributes("Niveau" , renderer ,"text" ,ENIVEAU, NULL);
+	  gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
 
-	renderer = gtk_cell_renderer_text_new ();
-	column = gtk_tree_view_column_new_with_attributes("Nom" , renderer ,"text" ,ENOM, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
+	  renderer = gtk_cell_renderer_text_new ();
+	  column = gtk_tree_view_column_new_with_attributes("Nom" , renderer ,"text" ,ENOM, NULL);
+	  gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
 
-	renderer = gtk_cell_renderer_text_new ();
-	column = gtk_tree_view_column_new_with_attributes("Prenom" , renderer ,"text" ,EPRENOM, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
+	  renderer = gtk_cell_renderer_text_new ();
+	  column = gtk_tree_view_column_new_with_attributes("Prenom" , renderer ,"text" ,EPRENOM, NULL);
+	  gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
 
-	renderer = gtk_cell_renderer_text_new ();
-	column = gtk_tree_view_column_new_with_attributes("Role" , renderer ,"text" ,EROLE, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
+	  renderer = gtk_cell_renderer_text_new ();
+	  column = gtk_tree_view_column_new_with_attributes("Role" , renderer ,"text" ,EROLE, NULL);
+	  gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
 
-	renderer = gtk_cell_renderer_text_new ();
-	column = gtk_tree_view_column_new_with_attributes("Sexe" , renderer ,"text" ,ESEXE, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
+	  renderer = gtk_cell_renderer_text_new ();
+	  column = gtk_tree_view_column_new_with_attributes("Sexe" , renderer ,"text" ,ESEXE, NULL);
+	  gtk_tree_view_append_column (GTK_TREE_VIEW (liste) , column);
 	
 	}
 
@@ -270,24 +252,22 @@ void AfficherTt(GtkWidget *liste)
 
 	f=fopen("Utilisateur.txt","r");
 	if(f==NULL)
-	{
+	  {
 		return;
-	}
+	  }
 	else
 	{
 		f=fopen("Utilisateur.txt","a+");
-		while (fscanf(f,"%s %d %s %d %s %s %s %s \n",Id,Age,Cin,Niveau,Nom,Prenom,Role,Sexe)!=EOF)
+		while (fscanf(f,"%s %d %s %d %s %s %s %s \n",Id,&Age,Cin,&Niveau,Nom,Prenom,Role,Sexe)!=EOF)
 		{
 			gtk_list_store_append (store,&iter);
 			gtk_list_store_set (store, &iter, EID, Id, EAGE, Age, ECIN, Cin, ENIVEAU, Niveau, ENOM, Nom, EPRENOM, Prenom, EROLE, Role ,ESEXE, Sexe,-1);
 		}
-		fclose(f);
+		
 		gtk_tree_view_set_model (GTK_TREE_VIEW (liste), GTK_TREE_MODEL (store));
 		g_object_unref (store);
+		fclose(f);
+
 	}
-
-
-    
 }
-
 
